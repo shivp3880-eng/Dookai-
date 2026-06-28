@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        # Ensure all run steps execute from the app subfolder by default
         working-directory: ./app
 
     env:
