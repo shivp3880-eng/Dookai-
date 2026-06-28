@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "282480124430",
+    "project_id": "dookai-448a0",
+    "storage_bucket": "dookai-448a0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282480124430:android:1a2ffbc8b6dfe32cd3925f",
+        "android_client_info": {
+          "package_name": "com.dookai.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCurpaRZSp_N94irS4qRYxwfgiW1qbD-t8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
