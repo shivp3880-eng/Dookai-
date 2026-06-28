@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DookAI - Your Smart AI Assistant">
+    <meta name="theme-color" content="#6366F1">
+    
+    <title>DookAI</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <link rel="manifest" href="manifest.json">
+    <script>
+        // Service worker registration for PWA support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('flutter_service_worker.js');
+            });
+        }
+    </script>
+    
+    <script src="main.dart.js" type="application/javascript"></script>
+</head>
+<body>
+    <script>
+        window.addEventListener('flutter-initialized', function() {
+            console.log('Flutter app initialized');
+        });
+    </script>
+</body>
+</html>
