@@ -35,10 +35,16 @@ jobs:
           cd app
           flutter pub get
 
+      - name: Force Clean and Repair Android Config
+        run: |
+          cd app
+          rm -rf android/build.gradle
+          rm -rf android/app/build.gradle
+          flutter create . --platforms=android
+
       - name: Build APK
         run: |
           cd app
-          echo "flutter.sdk=$FLUTTER_ROOT" > android/local.properties
           flutter build apk --release --split-per-abi
           
       - name: Upload APK Artifacts
