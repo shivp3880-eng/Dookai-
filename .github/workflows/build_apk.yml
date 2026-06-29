@@ -36,11 +36,9 @@ jobs:
           flutter pub get
 
       - name: Build APK
-        env:
-          FLUTTER_ROOT: ${{ env.FLUTTER_ROOT }}
-          PUB_CACHE: ${{ github.workspace }}/.pub-cache
         run: |
           cd app
+          echo "flutter.sdk=$FLUTTER_ROOT" > android/local.properties
           flutter build apk --release --split-per-abi
           
       - name: Upload APK Artifacts
@@ -48,4 +46,3 @@ jobs:
         with:
           name: dookai-release-apks
           path: app/build/app/outputs/apk/release/*.apk
-          
