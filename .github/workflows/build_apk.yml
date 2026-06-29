@@ -8,9 +8,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone Repository Manually
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          submodules: false # Submodules ko poori tarah ignore karega
+
+      - name: Ignore Broken Submodules Manually
         run: |
-          git clone --depth=1 https://github.com .
+          git config --global submodule.recurse false
+          git rm --cached flutter || true
 
       - name: Set up Java 17
         uses: actions/setup-java@v4
@@ -39,3 +45,4 @@ jobs:
         with:
           name: dookai-release-apks
           path: app/build/app/outputs/apk/release/*.apk
+          
