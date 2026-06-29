@@ -55,8 +55,10 @@ jobs:
 
       - name: Build APK
         run: |
-          cd app
-          flutter build apk --release --split-per-abi
+                - name: Build APK
+        run: flutter build apk --release --split-per-abi
+        working-directory: app
+        
           
       - name: Upload APK Artifacts
         uses: actions/upload-artifact@v4
