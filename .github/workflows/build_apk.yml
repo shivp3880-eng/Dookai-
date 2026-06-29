@@ -8,8 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - name: Clone Repository Manually
+        run: |
+          git clone --depth=1 https://github.com .
 
       - name: Set up Java 17
         uses: actions/setup-java@v4
@@ -38,3 +39,4 @@ jobs:
         with:
           name: dookai-release-apks
           path: app/build/app/outputs/apk/release/*.apk
+          
