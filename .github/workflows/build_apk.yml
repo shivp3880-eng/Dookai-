@@ -42,6 +42,13 @@ jobs:
           rm -rf android/app/build.gradle
           flutter create . --platforms=android
 
+      - name: Fix Android Manifest Exported Attribute
+        run: |
+          MANIFEST_PATH="app/android/app/src/main/AndroidManifest.xml"
+          if [ -f "$MANIFEST_PATH" ]; then
+            sed -i 's/<activity/<activity android:exported="true"/g' "$MANIFEST_PATH"
+          fi
+
       - name: Build APK
         run: |
           cd app
