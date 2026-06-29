@@ -11,13 +11,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-                - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
           submodules: false
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-          
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
@@ -48,3 +42,4 @@ jobs:
         with:
           name: dookai-release-apks
           path: app/build/app/outputs/apk/release/*.apk
+          
