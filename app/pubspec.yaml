@@ -18,33 +18,33 @@ dependencies:
   cloud_firestore: ^6.6.0
 
   # Google Sign-In
-  google_sign_in: ^6.1.5
+  google_sign_in: ^7.2.0
 
   # State Management
   provider: ^6.1.0
   flutter_riverpod: ^3.3.2
 
   # UI & Design
-  google_fonts: ^6.1.0
+  google_fonts: ^8.2.0
   cached_network_image: ^3.3.0
-  lottie: ^2.5.0
-  animate_do: ^3.1.2
+  lottie: ^3.5.1
+  animate_do: ^5.1.0
 
   # HTTP & API
   http: ^1.1.0
   dio: ^5.3.1
 
   # Markdown
-  flutter_markdown: ^0.6.16
+  flutter_markdown: ^0.7.7+1
   markdown: ^7.1.1
 
   # Code Highlighting
   highlight: ^0.7.0
 
   # Utils
-  intl: ^0.19.0
+  intl: ^0.20.3
   uuid: ^4.0.0
-  connectivity_plus: ^5.0.0
+  connectivity_plus: ^7.3.0
   shared_preferences: ^2.2.2
   path_provider: ^2.1.1
 
@@ -57,7 +57,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^3.0.0
+  flutter_lints: ^6.0.0
   build_runner: ^2.6.5
   riverpod_generator: ^4.0.4
 
