@@ -1,26 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
-  final String id;
-  final String email;
-  final String? displayName;
-  final String? photoUrl;
-  final DateTime createdAt;
-  final DateTime? lastLoginAt;
-  final bool isDarkMode;
 
   UserModel({
     required this.id,
     required this.email,
-    this.displayName,
+    required this.createdAt, this.displayName,
     this.photoUrl,
-    required this.createdAt,
     this.lastLoginAt,
     this.isDarkMode = false,
   });
 
   factory UserModel.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
+    final data = doc.data()! as Map<String, dynamic>;
     return UserModel(
       id: doc.id,
       email: data['email'] ?? '',
@@ -33,9 +25,15 @@ class UserModel {
       isDarkMode: data['isDarkMode'] ?? false,
     );
   }
+  final String id;
+  final String email;
+  final String? displayName;
+  final String? photoUrl;
+  final DateTime createdAt;
+  final DateTime? lastLoginAt;
+  final bool isDarkMode;
 
-  Map<String, dynamic> toFirestore() {
-    return {
+  Map<String, dynamic> toFirestore() => {
       'email': email,
       'displayName': displayName,
       'photoUrl': photoUrl,
@@ -45,7 +43,6 @@ class UserModel {
           : null,
       'isDarkMode': isDarkMode,
     };
-  }
 
   UserModel copyWith({
     String? id,
@@ -55,8 +52,7 @@ class UserModel {
     DateTime? createdAt,
     DateTime? lastLoginAt,
     bool? isDarkMode,
-  }) {
-    return UserModel(
+  }) => UserModel(
       id: id ?? this.id,
       email: email ?? this.email,
       displayName: displayName ?? this.displayName,
@@ -65,5 +61,4 @@ class UserModel {
       lastLoginAt: lastLoginAt ?? this.lastLoginAt,
       isDarkMode: isDarkMode ?? this.isDarkMode,
     );
-  }
 }

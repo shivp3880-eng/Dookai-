@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 
-class AIService {
-  late Dio _dio;
-  final String? _apiKey; // You'll need to set this from env or config
+class AIService { // You'll need to set this from env or config
 
   AIService({String? apiKey}) : _apiKey = apiKey {
     _dio = Dio(
@@ -12,6 +10,8 @@ class AIService {
       ),
     );
   }
+  late Dio _dio;
+  final String? _apiKey;
 
   // Generate AI response using your preferred API
   // This is a template - you'll need to implement with your actual API
@@ -39,7 +39,7 @@ class AIService {
 
       for (final word in words) {
         await Future.delayed(const Duration(milliseconds: 50));
-        yield word + ' ';
+        yield '$word ';
       }
     } catch (e) {
       print('Error streaming AI response: $e');
@@ -76,13 +76,12 @@ class AIService {
         'this would connect to a powerful AI API like Gemini, OpenAI, or Claude to provide '
         'intelligent, context-aware responses. The streaming would show the response being '
         'typed in real-time for a more interactive experience.\n\n'
-        'Your question: \"$prompt\"\n\n'
+        'Your question: "$prompt"\n\n'
         'You can customize this with your preferred AI service!';
   }
 
   // Extract suggested prompts
-  List<String> getSuggestedPrompts() {
-    return [
+  List<String> getSuggestedPrompts() => [
       'Tell me about Flutter',
       'How to learn AI?',
       'Best practices for coding',
@@ -90,7 +89,6 @@ class AIService {
       'Tips for productivity',
       'What is Firebase?',
     ];
-  }
 
   // Generate chat title from first message
   Future<String> generateChatTitle(String firstMessage) async {
@@ -99,7 +97,7 @@ class AIService {
       if (firstMessage.length <= 50) {
         return firstMessage;
       }
-      return firstMessage.substring(0, 50) + '...';
+      return '${firstMessage.substring(0, 50)}...';
     } catch (e) {
       return 'New Chat';
     }

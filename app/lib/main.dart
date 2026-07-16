@@ -20,18 +20,17 @@ void main() async {
 }
 
 class DookAIApp extends StatefulWidget {
-  const DookAIApp({Key? key}) : super(key: key);
+  const DookAIApp({super.key});
 
   @override
   State<DookAIApp> createState() => _DookAIAppState();
 }
 
 class _DookAIAppState extends State<DookAIApp> {
-  bool _isDarkMode = false;
+  final bool _isDarkMode = false;
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context) => MaterialApp(
       title: 'DookAI',
       theme: AppTheme.lightTheme(),
       darkTheme: AppTheme.darkTheme(),
@@ -47,7 +46,7 @@ class _DookAIAppState extends State<DookAIApp> {
       },
       onGenerateRoute: (settings) {
         if (settings.name == '/chat') {
-          final chatId = settings.arguments as String;
+          final chatId = settings.arguments! as String;
           return MaterialPageRoute(
             builder: (context) => ChatScreen(chatId: chatId),
             settings: settings,
@@ -56,5 +55,4 @@ class _DookAIAppState extends State<DookAIApp> {
         return null;
       },
     );
-  }
 }

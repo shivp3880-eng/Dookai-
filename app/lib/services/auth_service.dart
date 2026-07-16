@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/user_model.dart';
 
 class AuthService {
@@ -116,7 +117,7 @@ class AuthService {
           .where('userId', isEqualTo: uid)
           .get();
 
-      for (var chatDoc in chatsSnapshot.docs) {
+      for (final chatDoc in chatsSnapshot.docs) {
         // Delete messages
         final messagesSnapshot = await _firestore
             .collection('chats')
@@ -124,7 +125,7 @@ class AuthService {
             .collection('messages')
             .get();
 
-        for (var messageDoc in messagesSnapshot.docs) {
+        for (final messageDoc in messagesSnapshot.docs) {
           await messageDoc.reference.delete();
         }
 

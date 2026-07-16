@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../providers/app_providers.dart';
 import '../utils/constants.dart';
 import '../utils/theme.dart';
 import '../widgets/custom_widgets.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
@@ -218,8 +219,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 ),
                               ),
                             ),
-                            ...pinnedChats.asMap().entries.map((e) {
-                              return FadeInUp(
+                            ...pinnedChats.asMap().entries.map((e) => FadeInUp(
                                 duration: Duration(
                                   milliseconds: 400 + (e.key * 100),
                                 ),
@@ -228,8 +228,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                   e.value,
                                   user.uid,
                                 ),
-                              );
-                            }),
+                              )),
                             const SizedBox(height: 24),
                           ],
                           Padding(
@@ -244,19 +243,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               ),
                             ),
                           ),
-                          ...regularChats.asMap().entries.map((e) {
-                            return FadeInUp(
+                          ...regularChats.asMap().entries.map((e) => FadeInUp(
                               duration: Duration(
                                 milliseconds: 400 + (e.key * 100),
                               ),
                               child: _buildChatTile(context, e.value, user.uid),
-                            );
-                          }),
+                            )),
                           const SizedBox(height: 24),
                         ]),
                       );
                     },
-                    loading: () => SliverToBoxAdapter(
+                    loading: () => const SliverToBoxAdapter(
                       child: LoadingWidget(message: AppStrings.loading),
                     ),
                     error: (error, stack) => SliverToBoxAdapter(
@@ -271,14 +268,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         );
       },
-      loading: () => Scaffold(body: LoadingWidget(message: AppStrings.loading)),
+      loading: () => const Scaffold(body: LoadingWidget(message: AppStrings.loading)),
       error: (error, stack) =>
           Scaffold(body: AppErrorWidget(message: '${AppStrings.error}: $error')),
     );
   }
 
-  Widget _buildChatTile(BuildContext context, dynamic chat, String userId) {
-    return Card(
+  Widget _buildChatTile(BuildContext context, dynamic chat, String userId) => Card(
       margin: const EdgeInsets.only(bottom: AppConstants.smallPadding),
       child: ListTile(
         contentPadding: const EdgeInsets.all(AppConstants.smallPadding),
@@ -326,5 +322,4 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         onTap: () => Navigator.pushNamed(context, '/chat', arguments: chat.id),
       ),
     );
-  }
 }

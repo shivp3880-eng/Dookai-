@@ -16,12 +16,11 @@ class AppTheme {
   static const lightCard = Color(0xFFF8F9FA); // Light gray
 
   // Light Theme
-  static ThemeData lightTheme() {
-    return ThemeData(
+  static ThemeData lightTheme() => ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
       scaffoldBackgroundColor: lightBg,
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: primaryColor,
         secondary: secondaryColor,
         surface: lightSurface,
@@ -68,15 +67,13 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
-  }
 
   // Dark Theme
-  static ThemeData darkTheme() {
-    return ThemeData(
+  static ThemeData darkTheme() => ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
       scaffoldBackgroundColor: darkBg,
-      colorScheme: ColorScheme.dark(
+      colorScheme: const ColorScheme.dark(
         primary: primaryColor,
         secondary: secondaryColor,
         surface: darkSurface,
@@ -123,5 +120,4 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
-  }
 }

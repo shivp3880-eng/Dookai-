@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../providers/app_providers.dart';
 import '../utils/constants.dart';
 import '../utils/theme.dart';
 import '../widgets/custom_widgets.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
@@ -206,7 +207,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                               const SizedBox(height: 12),
                               _buildInfoRow(
                                 'User ID',
-                                currentUser.uid.substring(0, 12) + '...',
+                                '${currentUser.uid.substring(0, 12)}...',
                               ),
                             ],
                           ),
@@ -256,8 +257,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     );
   }
 
-  Widget _buildInfoRow(String label, String value) {
-    return Column(
+  Widget _buildInfoRow(String label, String value) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -275,5 +275,4 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         ),
       ],
     );
-  }
 }

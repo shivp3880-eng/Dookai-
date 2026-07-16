@@ -11,14 +11,14 @@ class AppConstants {
   static const String messagesCollection = 'messages';
 
   // Padding and margins
-  static const double defaultPadding = 16.0;
-  static const double smallPadding = 8.0;
-  static const double largePadding = 24.0;
+  static const double defaultPadding = 16;
+  static const double smallPadding = 8;
+  static const double largePadding = 24;
 
   // Border radius
-  static const double defaultBorderRadius = 12.0;
-  static const double largeBorderRadius = 16.0;
-  static const double smallBorderRadius = 8.0;
+  static const double defaultBorderRadius = 12;
+  static const double largeBorderRadius = 16;
+  static const double smallBorderRadius = 8;
 
   // Animation durations
   static const Duration shortDuration = Duration(milliseconds: 300);
@@ -115,9 +115,7 @@ class AppFormatters {
     }
   }
 
-  static String truncateString(String str, int length) {
-    return str.length > length ? str.substring(0, length) + '...' : str;
-  }
+  static String truncateString(String str, int length) => str.length > length ? '${str.substring(0, length)}...' : str;
 }
 
 class AppValidators {

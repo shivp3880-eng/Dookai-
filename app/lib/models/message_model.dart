@@ -1,13 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Message {
-  final String id;
-  final String chatId;
-  final String userId;
-  final String content;
-  final String sender; // 'user' or 'ai'
-  final DateTime createdAt;
-  final bool isFavorite;
 
   Message({
     required this.id,
@@ -20,7 +13,7 @@ class Message {
   });
 
   factory Message.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
+    final data = doc.data()! as Map<String, dynamic>;
     return Message(
       id: doc.id,
       chatId: data['chatId'] ?? '',
@@ -31,9 +24,15 @@ class Message {
       isFavorite: data['isFavorite'] ?? false,
     );
   }
+  final String id;
+  final String chatId;
+  final String userId;
+  final String content;
+  final String sender; // 'user' or 'ai'
+  final DateTime createdAt;
+  final bool isFavorite;
 
-  Map<String, dynamic> toFirestore() {
-    return {
+  Map<String, dynamic> toFirestore() => {
       'chatId': chatId,
       'userId': userId,
       'content': content,
@@ -41,7 +40,6 @@ class Message {
       'createdAt': Timestamp.fromDate(createdAt),
       'isFavorite': isFavorite,
     };
-  }
 
   Message copyWith({
     String? id,
@@ -51,8 +49,7 @@ class Message {
     String? sender,
     DateTime? createdAt,
     bool? isFavorite,
-  }) {
-    return Message(
+  }) => Message(
       id: id ?? this.id,
       chatId: chatId ?? this.chatId,
       userId: userId ?? this.userId,
@@ -61,5 +58,4 @@ class Message {
       createdAt: createdAt ?? this.createdAt,
       isFavorite: isFavorite ?? this.isFavorite,
     );
-  }
 }

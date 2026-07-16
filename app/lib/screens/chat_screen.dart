@@ -10,9 +10,9 @@ import '../utils/theme.dart';
 import '../widgets/custom_widgets.dart';
 
 class ChatScreen extends ConsumerStatefulWidget {
-  final String chatId;
 
-  const ChatScreen({Key? key, required this.chatId}) : super(key: key);
+  const ChatScreen({super.key, required this.chatId});
+  final String chatId;
 
   @override
   ConsumerState<ChatScreen> createState() => _ChatScreenState();
@@ -109,7 +109,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Text(
-                (snapshot.data as Chat).title,
+                (snapshot.data!).title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               );
@@ -121,12 +121,12 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
           PopupMenuButton(
             itemBuilder: (context) => [
               PopupMenuItem(
+                onTap: _showRenameDialog,
                 child: const Text('Rename'),
-                onTap: () => _showRenameDialog(),
               ),
               PopupMenuItem(
+                onTap: _showDeleteConfirmation,
                 child: const Text('Delete'),
-                onTap: () => _showDeleteConfirmation(),
               ),
             ],
           ),
@@ -137,8 +137,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
           // Messages
           Expanded(
             child: chatMessages.when(
-              data: (messages) {
-                return messages.isEmpty
+              data: (messages) => messages.isEmpty
                     ? Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -185,9 +184,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                             ),
                           );
                         },
-                      );
-              },
-              loading: () => LoadingWidget(message: AppStrings.loading),
+                      ),
+              loading: () => const LoadingWidget(message: AppStrings.loading),
               error: (error, stack) =>
                   AppErrorWidget(message: '${AppStrings.error}: $error'),
             ),

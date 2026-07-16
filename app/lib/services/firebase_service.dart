@@ -33,16 +33,12 @@ class FirebaseService {
   }
 
   // Get all chats for user
-  Stream<List<Chat>> getUserChats(String userId) {
-    return _firestore
+  Stream<List<Chat>> getUserChats(String userId) => _firestore
         .collection('chats')
         .where('userId', isEqualTo: userId)
         .orderBy('updatedAt', descending: true)
         .snapshots()
-        .map((snapshot) {
-          return snapshot.docs.map((doc) => Chat.fromFirestore(doc)).toList();
-        });
-  }
+        .map((snapshot) => snapshot.docs.map((doc) => Chat.fromFirestore(doc)).toList());
 
   // Get single chat
   Future<Chat?> getChat(String chatId) async {
@@ -94,7 +90,7 @@ class FirebaseService {
           .collection('messages')
           .get();
 
-      for (var doc in messagesSnapshot.docs) {
+      for (final doc in messagesSnapshot.docs) {
         await doc.reference.delete();
       }
 
@@ -115,7 +111,7 @@ class FirebaseService {
           .get();
 
       return snapshot.docs
-          .map((doc) => Chat.fromFirestore(doc))
+          .map(Chat.fromFirestore)
           .where(
             (chat) =>
                 chat.title.toLowerCase().contains(query.toLowerCase()) ||
@@ -160,7 +156,7 @@ class FirebaseService {
 
       await _firestore.collection('chats').doc(chatId).update({
         'lastMessage': content.length > 100
-            ? content.substring(0, 100) + '...'
+            ? '${content.substring(0, 100)}...'
             : content,
         'updatedAt': FieldValue.serverTimestamp(),
         'messageCount': chat.messageCount + 1,
@@ -181,19 +177,15 @@ class FirebaseService {
   }
 
   // Get messages for chat
-  Stream<List<Message>> getChatMessages(String chatId) {
-    return _firestore
+  Stream<List<Message>> getChatMessages(String chatId) => _firestore
         .collection('chats')
         .doc(chatId)
         .collection('messages')
         .orderBy('createdAt', descending: false)
         .snapshots()
-        .map((snapshot) {
-          return snapshot.docs
+        .map((snapshot) => snapshot.docs
               .map((doc) => Message.fromFirestore(doc))
-              .toList();
-        });
-  }
+              .toList());
 
   // Toggle favorite message
   Future<void> toggleFavoriteMessage(
