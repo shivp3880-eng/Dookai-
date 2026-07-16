@@ -6,7 +6,7 @@ import '../models/user_model.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email', 'profile']);
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
@@ -23,8 +23,8 @@ class AuthService {
           await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken ?? '',
+        idToken: googleAuth.idToken ?? '',
       );
 
       final userCredential = await _firebaseAuth.signInWithCredential(
